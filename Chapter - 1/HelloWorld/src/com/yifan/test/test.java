@@ -1,6 +1,5 @@
 package com.yifan.test;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class test {
