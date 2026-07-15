@@ -16,7 +16,10 @@ public class LiterDemo_1 {
         // 输出性别
         System.out.println('雄'); // 字符单引号
 
-        // 布尔 true/false
+        // 整数 byte, short, int, long
+        // 浮点数 float, double
+        // 布尔 boolean, true/false
+        // 字符类型 char
         // 空 null
         // 未定义 undefined
     }
