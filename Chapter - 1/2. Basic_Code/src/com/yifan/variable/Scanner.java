@@ -1,12 +1,10 @@
 package com.yifan.variable;
 
-import java.util.Scanner;
-
-public class VariableDemo_2 {
+public class Scanner {
     public static void main(String[] args) {
         // 键盘录入
         // 找到scanner
-        Scanner sc = new Scanner(System.in);
+        java.util.Scanner sc = new java.util.Scanner(System.in);
         // 执行scanner
         int num = sc.nextInt(); // 接收整数
         System.out.println(num);

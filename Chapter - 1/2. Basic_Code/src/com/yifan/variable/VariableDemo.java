@@ -1,6 +1,6 @@
 package com.yifan.variable;
 
-public class VariableDemo_1 {
+public class VariableDemo {
     public static void main(String[] args) {
         // 微信余额:0元
         // 支付宝余额:10元
