@@ -2,20 +2,21 @@ package com.yifan.variable;
 
 public class Scanner {
     public static void main(String[] args) {
-        try (// 键盘录入
-                // 找到scanner
-        java.util.Scanner sc = new java.util.Scanner(System.in)) {
-            // 执行scanner
-            int num = sc.nextInt(); // 接收整数
-            System.out.println(num);
+        // Keyboard input
+        java.util.Scanner sc = new java.util.Scanner(System.in);
 
-            // 接收小数
-            double num2 = sc.nextDouble();
-            System.out.println(num2);
+        // Read an integer
+        int num = sc.nextInt();
+        System.out.println(num);
 
-            // 接收文本
-            String context = sc.next();
-            System.out.println(context);
-        }
+        // Read a decimal number
+        double num2 = sc.nextDouble();
+        System.out.println(num2);
+
+        // Read text
+        String context = sc.next();
+        System.out.println(context);
+
+        sc.close();
     }
 }
