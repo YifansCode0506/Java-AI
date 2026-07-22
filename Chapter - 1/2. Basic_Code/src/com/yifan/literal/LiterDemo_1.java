@@ -1,4 +1,4 @@
-package com.yifan.literal;
+package com.yifan.Literal;
 
 public class LiterDemo_1 {
     public static void main(String[] args) {

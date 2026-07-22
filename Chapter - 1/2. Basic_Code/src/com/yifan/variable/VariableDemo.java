@@ -1,4 +1,4 @@
-package com.yifan.variable;
+package com.yifan.Variable;
 
 public class VariableDemo {
     public static void main(String[] args) {

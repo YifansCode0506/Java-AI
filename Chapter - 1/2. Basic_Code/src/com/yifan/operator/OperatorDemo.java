@@ -1,4 +1,4 @@
-package com.yifan.operator;
+package com.yifan.Operator;
 
 public class OperatorDemo {
     public static void main(String[] args) {
