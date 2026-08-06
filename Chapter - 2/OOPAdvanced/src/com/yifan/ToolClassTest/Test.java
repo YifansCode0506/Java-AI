@@ -1,7 +1,5 @@
 package com.yifan.ToolClassTest;
 
-import java.util.Arrays;
-
 public class Test {
     public static void main(String[] args) {
         // 创建一个数组
