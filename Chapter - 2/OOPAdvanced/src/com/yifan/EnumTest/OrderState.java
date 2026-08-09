@@ -1,6 +1,6 @@
 package com.yifan.EnumTest;
 
-public enum OderState {
+public enum OrderState {
     // 先写这个类所有的对象
     // OderState PAYMENT_PENDING = new OderState("待支付");
     PAYMENT_PENDING("待支付"),
@@ -12,7 +12,8 @@ public enum OderState {
 
     private String name;
 
-    private OderState(String name) {
+    private OrderState(String name) {
+        System.out.println("看看我执行了吗  " + name);
         this.name = name;
     }
     public String getName() {

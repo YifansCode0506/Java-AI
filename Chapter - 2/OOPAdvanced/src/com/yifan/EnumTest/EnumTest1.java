@@ -16,7 +16,7 @@ public class EnumTest1 {
             定义javabean类，描述电商项目中订单的状态
         * */
 
-        OderState o1 = OderState.PAYMENT_PENDING;
+        OrderState o1 = OrderState.PAYMENT_PENDING;
         System.out.println(o1.getName());
 
         switch (o1) {
