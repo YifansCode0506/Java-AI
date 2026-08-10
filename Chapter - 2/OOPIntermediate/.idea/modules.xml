@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/OOPAdvanced.iml" filepath="$PROJECT_DIR$/OOPAdvanced.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOPIntermediate.iml" filepath="$PROJECT_DIR$/OOPIntermediate.iml" />
     </modules>
   </component>
 </project>
