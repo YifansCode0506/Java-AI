@@ -27,7 +27,7 @@ public class Test {
         a.NFC();
 
         System.out.println();
-        
+
         // 创建苹果手机的对象
         IOS io = new IOS();
         io.brand = "IPhone";
