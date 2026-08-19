@@ -1,5 +1,7 @@
 package com.yifan.OOP_Interface;
 
+import com.yifan.OOP_Interface2.Inter;
+
 public class Test {
     public static void main(String[] args) {
         /*
@@ -25,6 +27,9 @@ public class Test {
         System.out.println(d.getName() + ", " + d.getColor());
         d.eat();
         d.swim();
+
+        // 其他包的类中，使用Inter里面的A
+        // System.out.println(Inter.A);
 
     }
 }
