@@ -1,4 +1,4 @@
-package com.yifan.OOP_InterClass3;
+package com.yifan.OOP_InnerClass3;
 
 public class Test {
     public static void main(String[] args) {

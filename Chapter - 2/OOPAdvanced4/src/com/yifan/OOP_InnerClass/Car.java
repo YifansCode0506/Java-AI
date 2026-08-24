@@ -1,4 +1,4 @@
-package com.yifan.OOP_InterClass;
+package com.yifan.OOP_InnerClass;
 
 public class Car {
     String carName;

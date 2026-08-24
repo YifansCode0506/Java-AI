@@ -1,4 +1,4 @@
-package com.yifan.OOP_InterClass3;
+package com.yifan.OOP_InnerClass3;
 
 public class Outer {
     private int a = 10;
