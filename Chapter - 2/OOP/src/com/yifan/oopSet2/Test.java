@@ -1,4 +1,4 @@
-package com.yifan.oopSet3;
+package com.yifan.oopSet2;
 
 public class Test {
     public static void main(String[] args) {

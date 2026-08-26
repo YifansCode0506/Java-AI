@@ -1,4 +1,4 @@
-package com.yifan.oopSet3;
+package com.yifan.oopSet2;
 
 public class Student {
     //姓名、年龄、身高、体重。
