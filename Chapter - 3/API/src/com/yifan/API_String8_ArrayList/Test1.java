@@ -8,8 +8,7 @@ public class Test1 {
         * 常见方法:
                 boolean add(E e)            添加数据到末尾
                 void add(int index, E e)    添加数据到指定位置
-                boolean remove(E e)         根据元素删除
-                E remove(int index)         根据索引删除
+
                 E set(int index,E e)        将指定位置的数据修改为新元素
                 E get(int index)            获取特定索引的数据
                 int size()                  集获取合长度
