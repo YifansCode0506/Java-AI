@@ -3,6 +3,7 @@ package com.yifan.UI;
 import com.yifan.domain.User;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Login {
@@ -195,5 +196,47 @@ public class Login {
         // 字母至少有一个, 数字至少有一个, 其他字符一定不能有
         int[] arr = getCount(password);
         return arr[0] > 0 && arr[1] > 0 && arr[2] == 0;
+    }
+
+    public static String getCode() {
+        // 长度为5
+        // 由4位大写或者小写字母和1位数字组成，同一个字母可重复
+        // 数字可以出现在任意位置
+
+        // 1.把所有的大写和小写的字母都放到一个容器
+        ArrayList<Character> list = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            list.add((char) ('a' + i));
+            list.add((char) ('A' + i));
+        }
+        // System.out.println(list);
+
+        // 2.从集合当中随机抽取字母(4次)
+        StringBuffer sb = new StringBuffer();
+
+        Random rand = new Random();
+        for (int i = 0; i < 4; i++) {
+            int index = rand.nextInt(list.size());
+            char c = list.get(index);
+            sb.append(c);
+        }
+        // 3.生成一个随机的数字(09)
+        sb.append(rand.nextInt(10));
+        // 4.数字的位置可以是任意的
+        // 先把sb变成字符串，调用tocharArray方法，变成字符数组
+        char[] arr = sb.toString().toCharArray();
+        // 把最大索引上的数据，跟一个的素引进行交换
+        int i = rand.nextInt(arr.length);
+        // 交换
+        // 最大索引：length
+        // 随机索引：i
+        char temp = arr[i];
+        arr[i] = arr[arr.length - 1];
+        arr[arr.length - 1] = temp;
+
+        // 5.把字符数组中的数据，变回字符串
+        String code = new String(arr);
+
+        return code;
     }
 }
