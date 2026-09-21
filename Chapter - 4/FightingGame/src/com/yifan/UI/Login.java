@@ -124,6 +124,14 @@ public class Login {
     // 登录操作
     public void login(ArrayList<User> list) {
         System.out.println("用户选择了登录操作");
+
+        // 判断用户名是否存在
+        // 不存在:提示未注册
+        // 存在:禁用，提示联系客服~
+        // 存在:验证验证码(用机器直按注册)
+        // 验证密码是否正确(三次)
+
+
     }
 
     // 公用方法
