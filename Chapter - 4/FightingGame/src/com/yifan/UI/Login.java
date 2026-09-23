@@ -132,8 +132,8 @@ public class Login {
         // 验证密码是否正确(三次)
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入用户名");
-        sc.next();
-
+        String username = sc.next();
+        
     }
 
     // 公用方法
