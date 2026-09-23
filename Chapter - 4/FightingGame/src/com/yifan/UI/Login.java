@@ -130,7 +130,9 @@ public class Login {
         // 存在:禁用，提示联系客服~
         // 存在:验证验证码(用机器直按注册)
         // 验证密码是否正确(三次)
-
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入用户名");
+        sc.next();
 
     }
 
