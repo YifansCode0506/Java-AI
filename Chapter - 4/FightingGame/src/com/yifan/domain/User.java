@@ -46,6 +46,7 @@ public class User {
         this.password = password;
     }
 
+    // 布尔类型变量的特点
     public boolean isStatus() {
         return status;
     }

@@ -5,6 +5,7 @@ import com.yifan.domain.User;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.SortedMap;
 
 public class Login {
 
@@ -130,10 +131,74 @@ public class Login {
         // 存在:禁用，提示联系客服~
         // 存在:验证验证码(用机器直按注册)
         // 验证密码是否正确(三次)
+
+        // 1. 键盘录入用户名
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入用户名");
         String username = sc.next();
-        
+
+        // 2. 不存在：提示未注册
+        if(!contains(list,username)) {
+            System.out.println("用户" + username + "未注册，请先注册再登录");
+            // 如果用户名不存在，结束登录的行为，回到选择界面当中去注册
+            return;
+        }
+
+        // 3. 存在:禁用，提示联系客服~
+        // 通过username，获取到当前的用户对象，再看账户的状态
+        int index = findIndex(list,username);
+        User u = list.get(index);
+        if(!u.isStatus()) {
+            System.out.println("用户" + username + "已禁用，请联系客服xxxxxx");
+            // 如果用户名禁用，结束登录的行为，回到选择界面当中去注册
+            return;
+        }
+
+        // 4. 让用户继续键盘录入验证码和密码
+
+        // 验证密码是否正确
+        String rightPassword = u.getPassword();
+        for (int i = 0; i < 3; i++) {
+            System.out.println("请输入密码");
+            String password = sc.next();
+
+            // 每次验证密码的时候，都要输入验证码(防人机)
+            while(true) {
+                // 先生成一个正确的验证码
+                String rightCode = getCode();
+                System.out.println("正确的验证码为：" + rightCode);
+
+                System.out.println("请输入验证码：");
+                String code = sc.next();
+
+                if(rightCode.equalsIgnoreCase(code)) {
+                    System.out.println("验证码输入正确");
+                    // 输入正确则跳出循环，继续判断验证码
+                    break;
+                }else{
+                    System.out.println("验证码输入错误");
+                    // 如果错误则重新生成，让用户重新输入
+                    continue;
+                }
+            }
+
+            // 密码
+            if(rightPassword.equals(password)) {
+                System.out.println("登录成功，游戏启动");
+                break;
+            }else{
+                System.out.println("登录失败，密码输入错误");
+                if(i == 2){
+                    // 三次机会都用完了
+                    u.setStatus(false); // 锁定账号
+                    System.out.println("当前账户" + username + "已锁定，请联系客服xxxxxx");
+                return;
+                }else{
+                    //三次机会还没用完
+                    System.out.println("密码错误，还剩下"+ (2 - i) + "次机会");
+                }
+            }
+        }
     }
 
     // 公用方法
@@ -156,6 +221,16 @@ public class Login {
 
     }
 
+    // 作用：在集合中找username所在的索引
+    public int findIndex(ArrayList<User> list, String username) {
+        for(int i = 0; i < list.size(); i++) {
+            User u = list.get(i);
+            if (u.getUsername().equals(username)){
+                return i;
+            }
+        }
+        return -1;
+    }
 
     // ==========================================================================
     // 判断用户名
