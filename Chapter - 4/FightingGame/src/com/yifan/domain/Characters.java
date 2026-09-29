@@ -47,8 +47,8 @@ public class Characters {
     }
 
     // 4. 展示人物属性
-    public void show(){
-        System.out.println(name + "[当前生命：" + HP + "，攻击：" + attack + "，防御：" + defense + "]");
+    public String show(){
+        return name + "[当前生命：" + HP + "，攻击：" + attack + "，防御：" + defense + "]";
     }
 }
 

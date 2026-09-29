@@ -16,4 +16,18 @@ public class HeroCharacter extends Characters{
         super(name, HP, attack, defense);
         skillList = new ArrayList<>();
     }
+
+    // 行为：遍历技能列表
+    public String showSkills(){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < skillList.size(); i++) {
+            // 添加数据
+            sb.append(skillList.get(i));
+            // 判断是否是最后一个元素，如果不是则添加逗号和空格
+            if(i != skillList.size()-1){
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
+    }
 }
