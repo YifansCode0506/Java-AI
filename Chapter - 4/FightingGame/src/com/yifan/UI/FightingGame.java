@@ -1,7 +1,9 @@
 package com.yifan.UI;
 
+import com.yifan.domain.EnemyCharacter;
 import com.yifan.domain.HeroCharacter;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FightingGame {
@@ -17,6 +19,13 @@ public class FightingGame {
         System.out.println("角色创建成功！");
         System.out.println("初始属性为：" + player.show());
         System.out.println("拥有的技能：" + player.showSkills());
+
+        // 4.创建多个敌人列表
+        ArrayList<EnemyCharacter> enemyList = new ArrayList<>();
+        enemyList.add(new EnemyCharacter("初级战士", 80, 15, 10, "致死打击"));
+        enemyList.add(new EnemyCharacter("敏姐刺客", 60, 20, 5, "背刺"));
+        enemyList.add(new EnemyCharacter("重装坦克", 120, 10, 20, "神圣之锤"));
+        enemyList.add(new EnemyCharacter("神秘法师", 70, 25, 8, "寒冰箭"));
 
     }
     // 作用：用来创建一个玩家的角色
