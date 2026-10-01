@@ -4,9 +4,13 @@ import com.yifan.domain.EnemyCharacter;
 import com.yifan.domain.HeroCharacter;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class FightingGame {
+
+    // 启动游戏
+
     public void gameStart(String username) {
         System.out.println("==================");
         System.out.println("欢迎" + username + "来到文字格斗游戏");
@@ -27,10 +31,65 @@ public class FightingGame {
         enemyList.add(new EnemyCharacter("重装坦克", 120, 10, 20, "神圣之锤"));
         enemyList.add(new EnemyCharacter("神秘法师", 70, 25, 8, "寒冰箭"));
 
+        // 5.准备战斗(依次跟多个敌人战斗)
+        int count = 1; // 记录当前我是跟第几个敌人战斗
+        int wins = 0; // 记录胜利了几场
+
+        // 游戏中，依次和敌人进行战斗，直到我方生命值为0
+        while(player.isAlive()){
+            // 进入循环，开始准备战斗
+
+            // 5.1 重置敌人的属性，敌人属性每场HP+10，ATK+3, DEF+2(敌人:越来越打)(第二场的时候开始增加)
+            // 第二场：意味着第一场胜利了
+            if(wins != 0){
+                // 获取每个敌人的信息，进行属性增加
+                for (int i = 0; i < enemyList.size(); i++) {
+                    EnemyCharacter c = enemyList.get(i);
+                    // 每场 maxHP + 10
+                    c.maxHP = c.maxHP + 10; // +=
+                    c.HP = c.maxHP;
+                    // ATK + 3
+                    c.attack = c.attack + 3;
+                    // DEF + 2
+                    c.defense = c.defense + 2;
+                    // 每场战斗前，如果有减伤的buff，需要清空
+                    c.defending = false;
+                }
+            }
+            // 5.2 随机选择敌人(Random)
+            Random r = new Random();
+            int index = r.nextInt(enemyList.size());
+            EnemyCharacter enemy = enemyList.get(index);
+            System.out.println(enemy.show());
+            System.exit(0);
+
+            // 5.3开始跟抽取到敌人进行战斗
+            // 回合制(你打我一下，我打你一下)
+            // 内循环:跟单个敌人进行多轮战斗，直到有一方的血量为0才会结束
+            System.out.println("==================================");
+            System.out.println("\uFE0F 第"+ count +"场战斗开始！对手：" + enemy.name);
+            System.out.println("第几场战斗开始，对手是谁");
+
+            // 跟当前的敌人是第几回合
+            int round = 1;
+            while(player.isAlive()){
+                // 显示双方的状态(生命值)
+                System.out.println("-------------------------------");
+                System.out.println("\uFE0F 第"+ count +"回合开始");
+
+                // 打印敌我双方的血条
+            }
+        }
+
     }
     // 作用：用来创建一个玩家的角色
     // 参数：用户名
     // 返回值（方法的结果）
+
+    public String getHealthBar(){
+        
+    }
+
     public HeroCharacter createPlayerCharacter(String username) {
         // 结果就是创建好的玩家角色
         // 调用处：要调用
