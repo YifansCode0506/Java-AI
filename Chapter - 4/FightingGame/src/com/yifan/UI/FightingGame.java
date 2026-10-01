@@ -78,6 +78,8 @@ public class FightingGame {
                 System.out.println("\uFE0F 第"+ count +"回合开始");
 
                 // 打印敌我双方的血条
+                System.out.println(getHealthBar(player.name, player.HP, player.maxHP));
+                System.out.println(getHealthBar(enemy.name, enemy.HP, player.maxHP));
             }
         }
 
@@ -86,8 +88,27 @@ public class FightingGame {
     // 参数：用户名
     // 返回值（方法的结果）
 
-    public String getHealthBar(){
-        
+    public String getHealthBar(String name, int HP, int maxHP){
+        // 满血状态下，打印20个方块
+        int barLength = 20;
+
+        // 计算在不同的血量当中，一共打印多少个方块
+        // 最大血量: 200
+        // 当前血量: 100
+        int filled = (int)((HP * 1.0 / maxHP) * barLength);
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(": [");
+        for (int i = 0; i < barLength; i++) {
+            if(i < filled){
+                sb.append("■");
+            }else {
+                sb.append(" ");
+            }
+        }
+        // ] 100/100 HP
+        sb.append("]").append(HP).append('/').append(maxHP).append(" HP");
+
+        return sb.toString();
     }
 
     public HeroCharacter createPlayerCharacter(String username) {
