@@ -113,7 +113,19 @@ public class FightingGame {
                 System.out.println("当前战斗结束！恢复了" + healHP + "点HP");
                 System.out.println("当前胜利" + wins + "场");
                 System.out.println("==================================");
+            }
 
+            // 5.9 每胜利三场，人物的属性就需要增加
+            if(player.isAlive() && wins > 0 && wins % 3 ==0){
+                System.out.println("恭喜！你获得了属性提升");
+                // 提升最大生命值
+                player.maxHP = player.maxHP + 30;
+                // 提升攻击力
+                player.attack = player.attack + 5;
+                // 提升防御力
+                player.defense = player.defense + 3;
+                System.out.println("最大生命值 + 30，攻击力 + 5，防御力 + 3");
+                System.out.println("当前属性：" + player.show());
             }
         }
     }
