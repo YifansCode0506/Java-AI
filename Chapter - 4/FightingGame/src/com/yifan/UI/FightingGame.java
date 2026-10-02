@@ -127,6 +127,25 @@ public class FightingGame {
                 System.out.println("最大生命值 + 30，攻击力 + 5，防御力 + 3");
                 System.out.println("当前属性：" + player.show());
             }
+
+            if(player.isAlive()){
+                System.out.println("是否继续下一场战斗？(y/n)");
+                Scanner sc = new Scanner(System.in);
+                String choose = sc.next();
+                if(choose.equalsIgnoreCase("y")){ // 或者写"y".equalsIgnoreCase(choose)
+                    // 战斗继续
+                    count++;
+                    // 循环继续进行，执行下一场战斗
+                    continue;
+                }else if(choose.equalsIgnoreCase("n")){
+                    // 玩家主动结束游戏
+                    break;
+                }else{
+                    System.out.println("没有这个选项，默认游戏继续");
+                    count++;
+                    continue;
+                }
+            }
         }
     }
 
