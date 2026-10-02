@@ -1,7 +1,10 @@
 package com.yifan.domain;
 
 public class EnemyCharacter extends Characters{
-    public String skill;
+    public String skill; // 技能只有一个
+    // defending 状态：
+    // false 没有状态
+    // true 拥有状态
     public boolean defending;
 
     public EnemyCharacter() {

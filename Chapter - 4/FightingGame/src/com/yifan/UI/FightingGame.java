@@ -79,7 +79,7 @@ public class FightingGame {
                 // 打印敌我双方的血条
                 System.out.println(getHealthBar(player.name, player.HP, player.maxHP));
                 System.out.println(getHealthBar(enemy.name, enemy.HP, player.maxHP));
-                System.exit(0);
+
 
                 // 5.4 玩家回合:选择行动(1 普通攻击/2 强力一击/3 生命汲取)
                 playerTurn(player, enemy);
@@ -91,13 +91,32 @@ public class FightingGame {
                     break;
                 }
 
+                // 5.6 敌人回合:选择行动(50%的几率普通攻击/50%的几率技能攻击/不同的敌人采取不同的技能进行攻击)
+                enemyTurn(enemy, player);
+
+                // 5.7 判断玩家是否被击败
+                if(!player.isAlive()){
+                    System.out.println("你被" + enemy.name + "击败了!");
+                    break; // 战斗停止
+                }
+                round++;
+                // System.exit(0);
+            }
+
+            // 5.8 跟一个敌人的战斗结束之后，玩家胜利(继续战斗) 玩家失败(游戏停止)
+            if(player.isAlive()){
+                // 计算恢复量
+                int healHP = r.nextInt(21) + 20;
+                //恢复玩家的血量
+                player.heal(healHP);
+                // 提示
+                System.out.println("当前战斗结束！恢复了" + healHP + "点HP");
+                System.out.println("当前胜利" + wins + "场");
+                System.out.println("==================================");
+
             }
         }
-
     }
-    // 作用：用来创建一个玩家的角色
-    // 参数：用户名
-    // 返回值（方法的结果）
 
     public String getHealthBar(String name, int HP, int maxHP){
         // 满血状态下，打印20个方块
@@ -122,6 +141,9 @@ public class FightingGame {
         return sb.toString();
     }
 
+    // 作用：用来创建一个玩家的角色
+    // 参数：用户名
+    // 返回值（方法的结果）
     public HeroCharacter createPlayerCharacter(String username) {
         // 结果就是创建好的玩家角色
         // 调用处：要调用
@@ -258,6 +280,65 @@ public class FightingGame {
         }
     }
 
+    // 作用：敌人的回合
+    private void enemyTurn(EnemyCharacter enemy, HeroCharacter player) {
+        System.out.println("=====" + enemy.name + "的回合 =====");
+
+        // 计算是普通攻击还是技能攻击（50%）
+        String action = "普通攻击";
+        Random r = new Random();
+        int num = r.nextInt(10); // 0-9之间获取，0-4是普通攻击，5-9是技能攻击
+        if(num >= 5){
+            action = enemy.skill;
+        }
+
+        // 根据不同的情况，采取不同的攻击手段
+        switch (action) {
+            case "普通攻击":
+                System.out.println("敌人采取了普通攻击");
+                // 计算伤害
+                int damage1 = calculateDamage(enemy.attack,  player.defense);
+                // 提示
+                System.out.println(enemy.name + "对你使用了普通攻击，造成了" + damage1 + "点伤害！");
+                // 我方扣血
+                player.takeDamage(damage1);
+                break;
+            case "猛击":
+                System.out.println("当前的战士采取了猛击");
+                // 计算伤害
+                int damage2 = calculateDamage((int)(enemy.attack * 1.5),  player.defense);
+                // 提示
+                System.out.println(enemy.name + "对你使用了猛击，造成了" + damage2 + "点伤害！");
+                // 我方扣血
+                player.takeDamage(damage2);
+                break;
+            case "背刺":
+                System.out.println("当前的刺客采取了背刺");
+                // 计算伤害
+                int damage3 = 0;
+                for (int i = 0; i < 2; i++) {
+                    int temp = calculateDamage((enemy.attack / 2),  player.defense);
+                    damage3 += temp;
+                }
+                // 提示
+                System.out.println(enemy.name + "对你使用了背刺，造成了" + damage3 + "点伤害！");
+                // 我方扣血
+                player.takeDamage(damage3);
+                break;
+            case "神圣之锤":
+                System.out.println("当前的重装坦克采取了神圣之锤");
+                enemy.defending = true;
+                System.out.println(enemy.name + "对使用了神圣之锤，活动防御姿态！");
+                break;
+            case "寒冰箭":
+                System.out.println("当前的法师采取了寒冰箭");
+                int damage4 = calculateDamage((int)(enemy.attack * 1.8),  player.defense);
+                System.out.println(enemy.name + "对你使用了寒冰箭，造成了" + damage4 + "点伤害！");
+                player.takeDamage(damage4);
+                break;
+        }
+    }
+
     // 作用:用来计算双方战斗的时候，造成的伤害
     // 普通攻击的调用方式:calculateDamage(我方攻击力，对方的防御力);
     // 技能攻击的调用方式:calculateDamage(我方攻击力*百分比，对方的防御力);
@@ -268,5 +349,4 @@ public class FightingGame {
         }
         return damage;
     }
-
 }
