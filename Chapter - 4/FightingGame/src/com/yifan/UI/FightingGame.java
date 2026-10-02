@@ -100,13 +100,12 @@ public class FightingGame {
                     break; // 战斗停止
                 }
                 round++;
-                // System.exit(0);
             }
 
             // 5.8 跟一个敌人的战斗结束之后，玩家胜利(继续战斗) 玩家失败(游戏停止)
             if(player.isAlive()){
                 // 计算恢复量
-                int healHP = r.nextInt(21) + 20;
+                int healHP = r.nextInt(21) + 30;
                 //恢复玩家的血量
                 player.heal(healHP);
                 // 提示
@@ -147,8 +146,16 @@ public class FightingGame {
                 }
             }
         }
+
+        // 6. 最终结算
+        System.out.println("==================================");
+        System.out.println("游戏结束");
+        System.out.println("总胜场：" + wins);
+        System.out.println("感谢游玩文字格斗游戏");
+        System.exit(0);
     }
 
+    // 作用：用来创建血条
     public String getHealthBar(String name, int HP, int maxHP){
         // 满血状态下，打印20个方块
         int barLength = 20;
